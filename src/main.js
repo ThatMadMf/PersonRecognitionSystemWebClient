@@ -14,9 +14,9 @@ Vue.use(Antd);
 Vue.use(VuexAxios, axios);
 Vue.use(VueSidebarMenu);
 
-Vue.axios.defaults.baseURL = process.env.VUE_APP_API_URL || 'http://localhost:8000/api';
-
 setAuthInterceptor();
+
+Vue.axios.defaults.baseURL = process.env.VUE_APP_API_URL || 'http://localhost:8000/api';
 
 const token = localStorage.getItem('auth-token');
 if (token) {
