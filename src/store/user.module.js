@@ -10,16 +10,14 @@ export const SET_TOKEN = 'SET_TOKEN';
 const userModule = {
     state: () => ({
         user: null, token: null,
-    }),
-    actions: {
+    }), actions: {
         [GET_USER](context, token) {
             ApiService.get('/me')
                 .then((response) => {
                     context.commit(SET_USER, response.data);
                     context.commit(SET_TOKEN, token);
                 });
-        },
-        [LOGIN](context, user) {
+        }, [LOGIN](context, user) {
             ApiService.post('/login', user)
                 .then((response) => {
                     setUserData(context, response.data);
@@ -29,13 +27,16 @@ const userModule = {
                     console.error(response.data.detail);
                 });
         },
-    },
-    mutations: {},
-    getters: {
+    }, mutations: {
+        [SET_USER](state, user) {
+            state.user = user;
+        }, [SET_TOKEN](state, token) {
+            state.token = token;
+        }
+    }, getters: {
         user(state) {
             return state.user;
-        },
-        token(state) {
+        }, token(state) {
             return state.token;
         },
     }
