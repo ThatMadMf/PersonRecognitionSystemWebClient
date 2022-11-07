@@ -1,11 +1,25 @@
+import Vue from "vue";
+import VueRouter from 'vue-router';
+
 import TheRouterView from "@/views/TheRouterView";
 import TheHomePage from "@/views/TheHomePage";
-import {createRouter, createWebHistory} from "vue-router";
+import {isAuthenticated, isNotAuthenticated} from "@/services/api";
+import TheLoginPage from "@/views/TheLoginPage";
+
+
+Vue.use(VueRouter);
 
 const routes = [
     {
+        path: '/login',
+        name: 'login',
+        component: TheLoginPage,
+        beforeEnter: (to, from, next) => isNotAuthenticated(to, from, next),
+    },
+    {
         path: '/',
         component: TheRouterView,
+        beforeEnter: (to, from, next) => isAuthenticated(to, from, next),
         children: [
             {
                 path: 'home',
@@ -15,14 +29,12 @@ const routes = [
         ]
     },
     {
-        path: '/*',
-        redirect: '/home',
+        path: '/*', redirect: '/home',
     },
 ]
 
-const router = createRouter({
-    history: createWebHistory(process.env.BASE_URL),
-    routes,
+const router = new VueRouter({
+    mode: 'history', base: process.env.BASE_URL, routes,
 });
 
 export default router;

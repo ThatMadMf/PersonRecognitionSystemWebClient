@@ -1,16 +1,28 @@
 import 'ant-design-vue/dist/antd.css';
+import Antd from 'ant-design-vue';
 import 'vue-sidebar-menu/dist/vue-sidebar-menu.css';
-import VueSidebarMenu from 'vue-sidebar-menu'
+import VueSidebarMenu from 'vue-sidebar-menu';
+import App from './App.vue';
+import router from '@/router';
+import store from '@/store';
+import {setAuthInterceptor, setAuthToken} from '@/services/api';
+import VuexAxios from 'vue-axios';
+import axios from 'axios';
+import Vue from "vue";
 
-import {createApp} from 'vue'
-import App from './App.vue'
-import router from "@/router";
-import store from "@/store";
+Vue.use(Antd);
+Vue.use(VuexAxios, axios);
+Vue.use(VueSidebarMenu);
 
-const app = createApp(App);
+Vue.axios.defaults.baseURL = process.env.VUE_APP_API_URL || 'http://localhost:8000/api';
 
-app.use(VueSidebarMenu)
-app.use(router);
-app.use(store);
+setAuthInterceptor();
 
-app.mount('#app');
+const token = localStorage.getItem('auth-token');
+if (token) {
+    setAuthToken(token);
+}
+
+new Vue({
+    router, store, render: (h) => h(App),
+}).$mount('#app');
