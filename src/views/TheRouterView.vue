@@ -21,6 +21,8 @@
 
 <script>
 import {mapGetters} from "vuex";
+import {APPEND_DEVICE, SET_DEVICES, SET_FRAME} from "@/store/live-frame-capture";
+import uuid from "uuid";
 
 export default {
   name: 'TheRouterView',
@@ -67,8 +69,18 @@ export default {
 
       this.socket = new WebSocket(this.getSocketUrl());
 
+      this.socket.addEventListener('open', (_) => {
+        console.log('Socket connected');
+
+        this.socket.send(JSON.stringify({command: "get-devices", uuid: uuid.v4()}))
+      })
+
       this.socket.onconnect = () => {
         console.log('Socket connected');
+
+        alert("here")
+
+        this.socket.send(JSON.stringify({command: "get-devices", uuid: "1"}))
       };
 
       this.socket.onerror = () => {
@@ -84,7 +96,16 @@ export default {
 
         console.log(`Event ${event.command} with data:`, event?.data);
         switch (event.command) {
-          case "test":
+          case "device-authorized":
+            this.$store.commit(APPEND_DEVICE, event.data);
+
+            break;
+          case "frame-captured":
+            this.$store.commit(SET_FRAME, event.data);
+
+            break;
+          case "get-devices":
+            this.$store.commit(SET_DEVICES, event.data);
 
             break;
           default:
