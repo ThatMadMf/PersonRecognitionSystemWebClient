@@ -51,7 +51,7 @@ a {
 }
 
 img {
-  width: 30rem;
-  height: 30rem;
+  width: 24rem;
+  height: 32rem;
 }
 </style>
