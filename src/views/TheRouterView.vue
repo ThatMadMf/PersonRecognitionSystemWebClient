@@ -21,7 +21,7 @@
 
 <script>
 import {mapGetters} from "vuex";
-import {APPEND_DEVICE, REMOVE_DEVICE, SET_DEVICES, SET_FRAME} from "@/store/live-frame-capture";
+import {APPEND_DEVICE, REMOVE_DEVICE, SET_DEVICES, SET_FRAME, SET_IS_AUTHORIZED} from "@/store/live-frame-capture";
 import uuid from "uuid";
 
 export default {
@@ -110,6 +110,10 @@ export default {
             break
           case "device-disconnected":
             this.$store.commit(REMOVE_DEVICE, event.data);
+
+            break;
+          case "authorization-result":
+            this.$store.commit(SET_IS_AUTHORIZED, event.data);
 
             break;
           default:

@@ -9,8 +9,25 @@
       >
         <p> {{ device.deviceId }} </p>
         <p> {{ device.deviceName }}</p>
-        <img v-if="device.image" :src="`data:image/jpeg;base64,${device.image}`" alt="can't dispaly" class="frame"/>
-        <img v-if="!device.image" alt="no frame yet" class="frame" src="/await.png"/>
+
+        <img
+            v-if="device.isAuthorized"
+            alt="authorized"
+            class="frame"
+            src="/authorized.png"
+        />
+        <img
+            v-if="!device.isAuthorized && device.image"
+            :src="`data:image/jpeg;base64,${device.image}`"
+            alt="can't display"
+            class="frame"
+        />
+        <img
+            v-if="!device.isAuthorized && !device.image"
+            alt="no frame yet"
+            class="frame"
+            src="/await.png"
+        />
 
       </a-card>
     </div>
