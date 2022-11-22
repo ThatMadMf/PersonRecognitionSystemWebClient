@@ -122,4 +122,8 @@ export default {
 
 <style scoped>
 
+#router-view-wrapper {
+  padding-left: 350px;
+}
+
 </style>

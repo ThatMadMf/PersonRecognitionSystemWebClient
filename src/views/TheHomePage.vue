@@ -1,14 +1,19 @@
 <template>
   <div class="home-wrapper">
-    <a-card
-        v-for="device in getDevices"
-        :key="device.deviceId"
-        class="device-wrapper"
-    >
-      <p> {{ device.deviceId }} </p>
-      <p> {{ device.deviceName }}</p>
-      <img :src="`data:image/jpeg;base64,${device.image}`" alt="no frame yet" class="frame"/>
-    </a-card>
+    <h2>Active devices</h2>
+    <div class="devices-wrapper">
+      <a-card
+          v-for="device in getDevices"
+          :key="device.deviceId"
+          class="device-wrapper"
+      >
+        <p> {{ device.deviceId }} </p>
+        <p> {{ device.deviceName }}</p>
+        <img v-if="device.image" :src="`data:image/jpeg;base64,${device.image}`" alt="can't dispaly" class="frame"/>
+        <img v-if="!device.image" alt="no frame yet" class="frame" src="/await.png"/>
+
+      </a-card>
+    </div>
   </div>
 </template>
 
@@ -51,7 +56,17 @@ a {
 }
 
 img {
-  width: 24rem;
-  height: 32rem;
+  width: 20rem;
+  height: 26.6rem;
+}
+
+.devices-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.devices-wrapper * {
+  margin: 2rem;
 }
 </style>
