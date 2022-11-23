@@ -46,7 +46,11 @@ export default {
         },
         {
           href: '/sessions',
-          title: 'Capture session',
+          title: 'Capture sessions',
+        },
+        {
+          href: '/frames',
+          title: 'Capture session frames',
         },
       ],
       collapsed: false,

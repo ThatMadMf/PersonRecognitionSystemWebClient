@@ -1,5 +1,6 @@
 <template>
   <div class="sessions-wrapper">
+    <h2>Capture sessions history</h2>
     <a-table :columns="columns" :dataSource="sessions"/>
   </div>
 </template>
