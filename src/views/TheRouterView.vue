@@ -52,6 +52,10 @@ export default {
           href: '/frames',
           title: 'Capture session frames',
         },
+        {
+          href: '/users',
+          title: 'Users',
+        }
       ],
       collapsed: false,
       theme: 'white-theme',

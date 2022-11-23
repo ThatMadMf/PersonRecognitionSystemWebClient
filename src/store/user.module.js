@@ -1,16 +1,29 @@
 import {ApiService, setUserData} from "@/services/api";
 import router from "@/router";
 
+export const GET_USERS = 'GET_USERS';
 export const GET_USER = 'GET_USER';
 export const LOGIN = 'LOGIN';
 
+export const SET_USERS = 'SET_USERS';
 export const SET_USER = 'SET_USER';
 export const SET_TOKEN = 'SET_TOKEN';
 
 const userModule = {
     state: () => ({
-        user: null, token: null,
+        users: [],
+        user: null,
+        token: null,
     }), actions: {
+        [GET_USERS](context) {
+            ApiService.get('/users')
+                .then((response) => {
+                    context.commit(SET_USERS, response.data);
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+        },
         [GET_USER](context, token) {
             ApiService.get('/me')
                 .then((response) => {
@@ -28,12 +41,19 @@ const userModule = {
                 });
         },
     }, mutations: {
+        [SET_USERS](state, users) {
+            state.users = users;
+        },
         [SET_USER](state, user) {
             state.user = user;
-        }, [SET_TOKEN](state, token) {
+        },
+        [SET_TOKEN](state, token) {
             state.token = token;
         }
     }, getters: {
+        users(state) {
+            return state.users;
+        },
         user(state) {
             return state.user;
         }, token(state) {

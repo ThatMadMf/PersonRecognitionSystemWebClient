@@ -7,6 +7,7 @@ import {isAuthenticated, isNotAuthenticated} from "@/services/api";
 import TheLoginPage from "@/views/TheLoginPage";
 import TheSessionsPage from "@/views/TheSessionsPage";
 import TheFramesPage from "@/views/TheFramesPage";
+import TheUsersPage from "@/views/TheUsersPage";
 
 
 Vue.use(VueRouter);
@@ -37,6 +38,11 @@ const routes = [
                 path: 'frames',
                 name: 'frames',
                 component: TheFramesPage,
+            },
+            {
+                path: 'users',
+                name: 'users',
+                component: TheUsersPage,
             }
         ]
     },
