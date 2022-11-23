@@ -21,7 +21,13 @@
 
 <script>
 import {mapGetters} from "vuex";
-import {APPEND_DEVICE, REMOVE_DEVICE, SET_DEVICES, SET_FRAME, SET_IS_AUTHORIZED} from "@/store/live-frame-capture";
+import {
+  APPEND_DEVICE,
+  REMOVE_DEVICE,
+  SET_DEVICES,
+  SET_FRAME,
+  SET_IS_AUTHORIZED
+} from "@/store/live-frame-capture.module";
 import uuid from "uuid";
 
 export default {
@@ -37,6 +43,10 @@ export default {
         {
           href: '/home',
           title: 'Home',
+        },
+        {
+          href: '/sessions',
+          title: 'Capture session',
         },
       ],
       collapsed: false,

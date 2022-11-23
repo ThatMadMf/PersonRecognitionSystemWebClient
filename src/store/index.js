@@ -1,5 +1,6 @@
 import user from '@/store/user.module';
-import liveFrameCapture from "@/store/live-frame-capture";
+import liveFrameCapture from "@/store/live-frame-capture.module";
+import sessions from "@/store/sessions.module";
 import Vuex from 'vuex';
 import Vue from "vue";
 
@@ -9,5 +10,6 @@ export default new Vuex.Store({
     modules: {
         user,
         liveFrameCapture,
+        sessions,
     },
 })

@@ -5,6 +5,7 @@ import TheRouterView from "@/views/TheRouterView";
 import TheHomePage from "@/views/TheHomePage";
 import {isAuthenticated, isNotAuthenticated} from "@/services/api";
 import TheLoginPage from "@/views/TheLoginPage";
+import TheSessionsPage from "@/views/TheSessionsPage";
 
 
 Vue.use(VueRouter);
@@ -26,6 +27,11 @@ const routes = [
                 name: 'home',
                 component: TheHomePage,
             },
+            {
+                path: 'sessions',
+                name: 'sessions',
+                component: TheSessionsPage,
+            }
         ]
     },
     {
