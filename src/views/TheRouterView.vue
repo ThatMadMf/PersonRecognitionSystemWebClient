@@ -55,6 +55,10 @@ export default {
         {
           href: '/users',
           title: 'Users',
+        },
+        {
+          href: '/devices',
+          title: 'Devices'
         }
       ],
       collapsed: false,

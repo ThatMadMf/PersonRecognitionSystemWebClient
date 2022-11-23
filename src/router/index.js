@@ -8,6 +8,7 @@ import TheLoginPage from "@/views/TheLoginPage";
 import TheSessionsPage from "@/views/TheSessionsPage";
 import TheFramesPage from "@/views/TheFramesPage";
 import TheUsersPage from "@/views/TheUsersPage";
+import TheDevicesPage from "@/views/TheDevicesPage";
 
 
 Vue.use(VueRouter);
@@ -43,6 +44,11 @@ const routes = [
                 path: 'users',
                 name: 'users',
                 component: TheUsersPage,
+            },
+            {
+                path: 'devices',
+                name: 'devices',
+                component: TheDevicesPage,
             }
         ]
     },

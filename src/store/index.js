@@ -2,6 +2,7 @@ import user from '@/store/user.module';
 import liveFrameCapture from "@/store/live-frame-capture.module";
 import sessions from "@/store/sessions.module";
 import frames from "@/store/frames.module";
+import devices from "@/store/devices.module";
 import Vuex from 'vuex';
 import Vue from "vue";
 
@@ -13,5 +14,6 @@ export default new Vuex.Store({
         liveFrameCapture,
         sessions,
         frames,
+        devices,
     },
 })
