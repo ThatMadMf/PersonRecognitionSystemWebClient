@@ -3,9 +3,9 @@
     <h2>Session frames history</h2>
     <a-table :columns="columns" :dataSource="frames">
     <span slot="action" slot-scope="text, record">
-      <a @click="showModal(record.inputFrame)">View input frame</a>
+      <a @click="showInputImage(record.id)">View input frame</a>
       <a-divider type="vertical"/>
-      <a @click="showModal(record.outputFrame)">View output frame</a>
+      <a @click="showOutputImage(record.id)">View output frame</a>
     </span>
     </a-table>
     <a-modal
@@ -20,7 +20,7 @@
 
 <script>
 import {mapGetters} from "vuex";
-import {GET_FRAMES} from "@/store/frames.module";
+import {GET_FRAMES, GET_INPUT_IMAGE, GET_OUTPUT_IMAGE} from "@/store/frames.module";
 
 export default {
   name: "TheFramesPage",
@@ -71,14 +71,40 @@ export default {
         this.$notification.open({
           message: 'No image available',
           description: '',
-        })
+        });
 
         return
       }
 
       this.image = image;
       this.visible = true;
-    }
+    },
+    showInputImage(frameId) {
+      this.$store.dispatch(GET_INPUT_IMAGE, frameId)
+          .then((response) => {
+            this.showModal(response.data)
+          })
+          .catch((err) => {
+            console.error(err);
+            this.$notification.open({
+              message: 'No image available',
+              description: '',
+            });
+          });
+    },
+    showOutputImage(frameId) {
+      this.$store.dispatch(GET_OUTPUT_IMAGE, frameId)
+          .then((response) => {
+            this.showModal(response.data)
+          })
+          .catch((err) => {
+            console.error(err);
+            this.$notification.open({
+              message: 'No image available',
+              description: '',
+            });
+          });
+    },
   }
 }
 </script>
