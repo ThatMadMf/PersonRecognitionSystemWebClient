@@ -8,8 +8,8 @@ export const ApiService = {
     get(resource, options) {
         return Vue.axios.get(resource, options);
     },
-    post(resource, value) {
-        return Vue.axios.post(resource, value);
+    post(resource, value, headers = {}) {
+        return Vue.axios.post(resource, value, {headers});
     },
     patch(resource, value) {
         return Vue.axios.patch(resource, value);

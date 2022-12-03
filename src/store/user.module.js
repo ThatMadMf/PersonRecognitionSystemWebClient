@@ -1,10 +1,12 @@
 import {ApiService, setUserData} from "@/services/api";
 import router from "@/router";
+import {notification} from "ant-design-vue";
 
 export const GET_USERS = 'GET_USERS';
 export const GET_USER = 'GET_USER';
 export const CREATE_USER = 'CREATE_USER';
 export const DELETE_USER = 'DELETE_USER';
+export const UPLOAD_FACE = 'UPLOAD_FACE';
 export const LOGIN = 'LOGIN';
 
 export const SET_USERS = 'SET_USERS';
@@ -59,6 +61,27 @@ const userModule = {
                 })
                 .catch((err) => {
                     console.error(err);
+                })
+        },
+        [UPLOAD_FACE](context, {image, id}) {
+            ApiService.post(
+                '/user-face-encodings',
+                {userId: id, image: image},
+                {'Content-Type': 'multipart/form-data'},
+            )
+                .then(() => {
+                    notification.info({
+                        message: 'Successfully uploaded',
+                        description: '',
+                    })
+                })
+                .catch((err) => {
+                    notification.error({
+                        message: 'Failed to upload',
+                        description: '',
+                    })
+
+                    console.log(err);
                 })
         },
     }, mutations: {
