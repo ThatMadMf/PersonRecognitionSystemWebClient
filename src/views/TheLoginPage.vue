@@ -1,6 +1,6 @@
 <template>
   <div class="login-page-wrapper">
-    <a-card title="Free Driver">
+    <a-card title="Person recognition system">
       <a-form
           :form="form"
           class="login-form"
@@ -62,5 +62,28 @@ export default {
 </script>
 
 <style scoped>
+.login-page-wrapper {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
 
+.login-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem;
+    width: 25rem;
+ }
+    
+ .login-form-button {
+    width: 100%;
+ }
+ 
+ .input-icon {
+    color: rgba(0, 0, 0, 0.25);
+  }
 </style>
